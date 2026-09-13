@@ -9,7 +9,7 @@ import { ThemeToggleBtn } from "./ThemeToggleBtn";
 const NAV_LINKS = [
   { label: "Home", href: `/` },
   { label: "All Appointments", href: "/" },
-  {label: "Dashboard", href: "/"}
+  { label: "Dashboard", href: "/" },
 ];
 
 const Navbar = () => {
@@ -21,8 +21,12 @@ const Navbar = () => {
         {/* Logo */}
         <Link href={"/"}>
           <div className="flex items-center gap-2 font-black ">
-            <Image src="/doctime_logo.png" width={150} height={50} alt="DocTime logo" />
-            
+            <Image
+              src="/doctime_logo.png"
+              width={150}
+              height={50}
+              alt="DocTime logo"
+            />
           </div>
         </Link>
 
@@ -43,12 +47,16 @@ const Navbar = () => {
         <div className="flex justify-end items-center gap-1">
           {/* Theme Toggle */}
           {/* Login Button */}
-          <Button>
-            <span className="font-bold text-md">Login</span>
-          </Button>
-          <Button>
-            <span className="font-bold text-md">Register</span>
-          </Button>
+          <Link href={"/login"}>
+            <Button>
+              <span className="font-bold text-md">Login</span>
+            </Button>
+          </Link>
+          <Link href={"/register"}>
+            <Button>
+              <span className="font-bold text-md">Register</span>
+            </Button>
+          </Link>
           <ThemeToggleBtn />
           {/* Menu Bar */}
           <button
