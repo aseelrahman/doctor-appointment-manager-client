@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 const MainLayout = ({ children }) => {
@@ -5,6 +6,7 @@ const MainLayout = ({ children }) => {
     <>
       <Navbar />
       <main className="max-w-7xl mx-auto flex-1">{children}</main>
+      <Footer />
     </>
   );
 };
