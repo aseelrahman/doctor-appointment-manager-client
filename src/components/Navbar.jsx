@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-// import { ThemeToggleBtn } from "./ThemeToggelBtn";
+
 import Image from "next/image";
 import { Button } from "@heroui/react";
+import { ThemeToggleBtn } from "./ThemeToggleBtn";
 
 const NAV_LINKS = [
   { label: "Home", href: `/` },
@@ -48,7 +49,7 @@ const Navbar = () => {
           <Button>
             <span className="font-bold text-md">Register</span>
           </Button>
-          {/* <ThemeToggleBtn /> */}
+          <ThemeToggleBtn />
           {/* Menu Bar */}
           <button
             className="lg:hidden"

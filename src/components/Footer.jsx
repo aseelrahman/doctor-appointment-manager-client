@@ -5,7 +5,7 @@ import { FaSquareInstagram, FaSquareXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-cyan-50 pt-10">
+    <footer className="bg-accent-soft pt-10">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 text-center sm:px-6 md:grid-cols-3 md:text-left lg:gap-12">
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start">
