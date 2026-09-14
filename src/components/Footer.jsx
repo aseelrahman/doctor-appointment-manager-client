@@ -5,8 +5,8 @@ import { FaSquareInstagram, FaSquareXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-accent-soft pt-10">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 text-center sm:px-6 md:grid-cols-3 md:text-left lg:gap-12">
+    <footer className="bg-accent-soft pt-10 px-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 text-center md:grid-cols-3 md:text-left lg:gap-12">
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start">
           <Image
@@ -65,7 +65,7 @@ const Footer = () => {
             <Link
               href="https://www.facebook.com/"
               aria-label="Facebook"
-              className="transition-transform hover:scale-110"
+              className="transition-transform duration-300 hover:scale-110 hover:text-accent"
             >
               <FaFacebook />
             </Link>
@@ -73,7 +73,7 @@ const Footer = () => {
             <Link
               href="https://x.com/"
               aria-label="X"
-              className="transition-transform hover:scale-110"
+              className="transition-transform duration-300 hover:scale-110 hover:text-accent"
             >
               <FaSquareXTwitter />
             </Link>
@@ -81,7 +81,7 @@ const Footer = () => {
             <Link
               href="https://www.instagram.com/"
               aria-label="Instagram"
-              className="transition-transform hover:scale-110"
+              className="transition-transform duration-300 hover:scale-110 hover:text-accent"
             >
               <FaSquareInstagram />
             </Link>
@@ -89,7 +89,7 @@ const Footer = () => {
             <Link
               href="https://www.linkedin.com/"
               aria-label="LinkedIn"
-              className="transition-transform hover:scale-110"
+              className="transition-transform duration-300 hover:scale-110 hover:text-accent"
             >
               <FaLinkedin />
             </Link>
@@ -99,7 +99,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="mt-8">
-        <p className="px-4 py-4 text-center text-xs text-muted sm:text-sm">
+        <p className="py-4 text-center text-xs text-muted sm:text-sm">
           &copy; 2026 DocTime. All rights reserved.
         </p>
       </div>

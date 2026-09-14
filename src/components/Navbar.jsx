@@ -16,8 +16,8 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
-      <div className="flex lg:grid lg:grid-cols-[1fr_auto_1fr] h-16 items-center justify-between px-6">
+    <header className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg px-4">
+      <div className="flex max-w-7xl mx-auto lg:grid lg:grid-cols-[1fr_auto_1fr] h-16 items-center justify-between">
         {/* Logo */}
         <Link href={"/"}>
           <div className="flex items-center gap-2 font-black ">
@@ -48,12 +48,12 @@ const Navbar = () => {
           {/* Theme Toggle */}
           {/* Login Button */}
           <Link href={"/login"}>
-            <Button>
+            <Button size="sm">
               <span className="font-bold text-md">Login</span>
             </Button>
           </Link>
           <Link href={"/register"}>
-            <Button>
+            <Button size="sm">
               <span className="font-bold text-md">Register</span>
             </Button>
           </Link>
