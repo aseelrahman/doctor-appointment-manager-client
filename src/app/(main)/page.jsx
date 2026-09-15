@@ -1,7 +1,11 @@
+import Banner from "@/components/Banner";
+
 const HomePage = () => {
-  return <div>
-    Home Page
-  </div>;
+  return (
+    <div className="py-20">
+      <Banner />
+    </div>
+  );
 };
 
 export default HomePage;
