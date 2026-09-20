@@ -1,5 +1,5 @@
-import { Clock, MapPin } from "@gravity-ui/icons";
-import { Button, Card } from "@heroui/react";
+import { Clock, MapPin, StarFill } from "@gravity-ui/icons";
+import { Button, Card, Chip } from "@heroui/react";
 import Image from "next/image";
 
 const DoctorCard = ({ doctor }) => {
@@ -13,6 +13,12 @@ const DoctorCard = ({ doctor }) => {
           fill
           className="object-cover"
         />
+        <Chip className="absolute top-3 right-3 rounded-full bg-background/90 px-3 shadow-lg backdrop-blur-md">
+          <div className="flex items-center gap-1.5">
+            <StarFill className="size-4 text-warning" />
+            <span className="font-bold">{doctor?.rating}</span>
+          </div>
+        </Chip>
       </div>
 
       {/* Doctor Information */}
