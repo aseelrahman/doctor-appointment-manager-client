@@ -1,6 +1,7 @@
 import { Clock, MapPin, StarFill } from "@gravity-ui/icons";
 import { Button, Card, Chip } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const DoctorCard = ({ doctor }) => {
   return (
@@ -58,9 +59,13 @@ const DoctorCard = ({ doctor }) => {
             <p className="text-2xl font-bold text-accent">${doctor.fee}</p>
           </div>
 
-          <Button color="primary" size="lg">
-            View Details
-          </Button>
+          <Link
+            href={`/all-appointments/${doctor._id}`}
+          >
+            <Button color="primary" size="lg">
+              View Details
+            </Button>
+          </Link>
         </Card.Footer>
       </div>
     </Card>
