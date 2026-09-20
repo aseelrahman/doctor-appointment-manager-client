@@ -8,7 +8,7 @@ import { ThemeToggleBtn } from "./ThemeToggleBtn";
 
 const NAV_LINKS = [
   { label: "Home", href: `/` },
-  { label: "All Appointments", href: "/" },
+  { label: "All Appointments", href: "/all-appointments" },
   { label: "Dashboard", href: "/" },
 ];
 
