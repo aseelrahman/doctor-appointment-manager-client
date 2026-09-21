@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg px-4">
+    <header className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg px-5">
       <div className="flex max-w-7xl mx-auto lg:grid lg:grid-cols-[1fr_auto_1fr] h-16 items-center justify-between">
         {/* Logo */}
         <Link href={"/"}>
