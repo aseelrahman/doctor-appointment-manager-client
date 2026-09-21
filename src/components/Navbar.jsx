@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 import Image from "next/image";
-import { Button } from "@heroui/react";
+import { Avatar, Button, Spinner, toast } from "@heroui/react";
 import { ThemeToggleBtn } from "./ThemeToggleBtn";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const NAV_LINKS = [
   { label: "Home", href: `/` },
@@ -14,6 +16,20 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
+
+  const handleSignout = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/");
+          toast.success("Logout Successful.");
+        },
+      },
+    });
+  };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg px-4">
@@ -47,16 +63,46 @@ const Navbar = () => {
         <div className="flex justify-end items-center gap-1">
           {/* Theme Toggle */}
           {/* Login Button */}
-          <Link href={"/login"}>
-            <Button size="sm">
-              <span className="font-bold text-md">Login</span>
-            </Button>
-          </Link>
-          <Link href={"/register"}>
-            <Button size="sm">
-              <span className="font-bold text-md">Register</span>
-            </Button>
-          </Link>
+          {isPending ? (
+            <Spinner />
+          ) : session ? (
+            <>
+              <div>
+                <Avatar>
+                  <Avatar.Image
+                    alt={session.user.name}
+                    src={session.user.image ?? undefined}
+                  />
+                  <Avatar.Fallback>
+                    {session.user.name
+                      ?.trim()
+                      .split(/\s+/)
+                      .slice(0, 2)
+                      .map((name) => name[0])
+                      .join("")
+                      .toUpperCase()}
+                  </Avatar.Fallback>
+                </Avatar>
+              </div>
+              <Button size="sm" variant="danger" onClick={handleSignout}>
+                <span className="font-bold text-md">Logout</span>
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href={"/login"}>
+                <Button size="sm">
+                  <span className="font-bold text-md">Login</span>
+                </Button>
+              </Link>
+              <Link href={"/register"}>
+                <Button size="sm">
+                  <span className="font-bold text-md">Register</span>
+                </Button>
+              </Link>
+            </>
+          )}
+
           <ThemeToggleBtn />
           {/* Menu Bar */}
           <button
@@ -92,7 +138,7 @@ const Navbar = () => {
       </div>
 
       {isMenuOpen && (
-        <nav className="border-t border-separator md:hidden">
+        <nav className="border-t border-separator lg:hidden">
           <ul className="flex flex-col gap-2 p-4">
             {NAV_LINKS.map(({ label, href }) => (
               <li key={label}>
