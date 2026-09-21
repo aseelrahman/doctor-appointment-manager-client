@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Card,
@@ -9,26 +10,47 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
-  const onSubmit = (e) => {
+  const router = useRouter();
+  const handleLogin = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = {};
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+    const loginData = Object.fromEntries(formData.entries());
+
+    const { data, error } = await authClient.signIn.email(
+      {
+        email: loginData.email,
+        password: loginData.password,
+        rememberMe: false,
+      },
+      {
+        //callbacks
+      },
+    );
+
+    if (data) {
+      router.push("/");
+      toast.success("Login Successfull.");
+    }
+    if (error) {
+      toast.danger(error.message);
+    }
   };
   return (
     <Card>
       <div className="flex flex-col space-y-1 justify-center items-center">
-        <Link href={'/'} className="hover:scale-110 transition-transform duration-300">
+        <Link
+          href={"/"}
+          className="hover:scale-110 transition-transform duration-300"
+        >
           <Image
             src={"/doctime_logo.png"}
             height={60}
@@ -39,7 +61,7 @@ const LoginPage = () => {
         <h5 className="font-bold text-2xl text-center ">Login</h5>
         <p className="text-muted text-center">Welcome Back to DocTime</p>
       </div>
-      <Form className="flex w-xs sm:w-md flex-col gap-4" onSubmit={onSubmit}>
+      <Form className="flex w-xs sm:w-md flex-col gap-4" onSubmit={handleLogin}>
         <TextField
           isRequired
           name="email"

@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Card,
@@ -9,21 +10,40 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 
 const RegistrationPage = () => {
-  const onSubmit = (e) => {
+  const router = useRouter();
+  const handleRegister = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = {};
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
+    const registerData = Object.fromEntries(formData.entries());
+
+    console.log(registerData);
+
+    const { data, error } = await authClient.signUp.email({
+      email: registerData.email,
+      password: registerData.password,
+      name: registerData.name,
+      image: registerData.photoUrl,
     });
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+
+    if (error) {
+      if (error.message === "User already exists. Use another email.") {
+        toast.warning("User Already exists.");
+      } else {
+        toast.danger(error.message);
+      }
+    }
+    if (data) {
+      router.push("/");
+      toast.success("Account created successfully.");
+    }
   };
   return (
     <Card>
@@ -42,20 +62,16 @@ const RegistrationPage = () => {
         <h5 className="font-bold text-2xl text-center ">Register</h5>
         <p className="text-muted text-center">Create your DocTime Account</p>
       </div>
-      <Form className="flex w-xs sm:w-md flex-col gap-4" onSubmit={onSubmit}>
-        <TextField
-          isRequired
-          name="name"
-          type="text"
-        >
+      <Form
+        className="flex w-xs sm:w-md flex-col gap-4"
+        onSubmit={handleRegister}
+      >
+        <TextField isRequired name="name" type="text">
           <Label>Name</Label>
           <Input className={"bg-default"} placeholder="Enter your full name" />
           <FieldError />
         </TextField>
-        <TextField
-          name="photoUrl"
-          type="url"
-        >
+        <TextField name="photoUrl" type="url">
           <Label>Photo URL (optional)</Label>
           <Input className={"bg-default"} placeholder="https://example.com" />
           <FieldError />
@@ -101,7 +117,7 @@ const RegistrationPage = () => {
           </Description>
           <FieldError />
         </TextField>
-       
+
         <div className="flex w-full gap-2">
           <Button type="reset" variant="secondary" className={"flex-1"}>
             Reset
