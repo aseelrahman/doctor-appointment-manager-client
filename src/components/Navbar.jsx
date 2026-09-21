@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const NAV_LINKS = [
   { label: "Home", href: `/` },
   { label: "All Appointments", href: "/all-appointments" },
-  { label: "Dashboard", href: "/" },
+  { label: "Dashboard", href: "/dashboard" },
 ];
 
 const Navbar = () => {
