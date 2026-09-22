@@ -2,11 +2,17 @@ import { Button, Card, Chip } from "@heroui/react";
 import { Calendar, Clock, MapPin, StarFill } from "@gravity-ui/icons";
 import Image from "next/image";
 import { fetchDoctorById } from "@/lib/doctors";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const DoctorDetailPage = async ({ params }) => {
   const { id } = await params;
 
-  const doctor = await fetchDoctorById(id);
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const doctor = await fetchDoctorById(id, tokenData.token);
 
   const {
     name,
