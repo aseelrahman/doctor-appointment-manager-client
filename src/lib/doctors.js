@@ -9,8 +9,10 @@ export const fetchDoctors = async () => {
 };
 
 //Doctor by ID
-export const fetchDoctorById = async (id) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/doctors/${id}`);
+export const fetchDoctorById = async (id, token) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/doctors/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch doctor");
   }
@@ -20,9 +22,11 @@ export const fetchDoctorById = async (id) => {
 
 // Top 3 Doctors
 export const fetchTopDoctors = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/doctors/top-rated`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/doctors/top-rated`,
+  );
   if (!res.ok) {
-    throw new Error("Failed to fetch top doctors")
+    throw new Error("Failed to fetch top doctors");
   }
   const data = await res.json();
   return data;
