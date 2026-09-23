@@ -13,7 +13,7 @@ const AllAppointments = async () => {
         Find the right doctor for you.
       </p>
       <div className="max-w-xl mx-auto px-5 mt-3">
-        <SearchField name="search">
+        <SearchField aria-label="Search doctors" name="search">
           <SearchField.Group>
             <SearchField.SearchIcon />
             <SearchField.Input
