@@ -60,6 +60,7 @@ const Banner = () => {
                   alt={`Banner ${i + 1}`}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   priority={i === 0}
                 />
               </div>

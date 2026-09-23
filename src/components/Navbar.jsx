@@ -42,6 +42,7 @@ const Navbar = () => {
               width={150}
               height={50}
               alt="DocTime logo"
+              loading="eager"
             />
           </div>
         </Link>

@@ -12,6 +12,7 @@ const DoctorCard = ({ doctor }) => {
           src={doctor.image}
           alt={doctor.name}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           className="object-cover"
         />
         <Chip className="absolute top-3 right-3 rounded-full bg-background/90 px-3 shadow-lg backdrop-blur-md">
@@ -59,9 +60,7 @@ const DoctorCard = ({ doctor }) => {
             <p className="text-2xl font-bold text-accent">${doctor.fee}</p>
           </div>
 
-          <Link
-            href={`/all-appointments/${doctor._id}`}
-          >
+          <Link href={`/all-appointments/${doctor._id}`}>
             <Button color="primary" size="lg">
               View Details
             </Button>
