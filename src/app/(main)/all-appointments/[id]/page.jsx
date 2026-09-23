@@ -4,6 +4,7 @@ import Image from "next/image";
 import { fetchDoctorById } from "@/lib/doctors";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { AppointmentBookModal } from "@/components/AppointmentBookModal";
 
 const DoctorDetailPage = async ({ params }) => {
   const { id } = await params;
@@ -137,14 +138,7 @@ const DoctorDetailPage = async ({ params }) => {
 
                   <p className="mt-1 text-3xl font-bold text-accent">${fee}</p>
                 </div>
-
-                <Button
-                  color="primary"
-                  size="lg"
-                  className="px-8 font-semibold"
-                >
-                  Book Appointment
-                </Button>
+                <AppointmentBookModal doctor={doctor} />
               </div>
             </div>
           </div>
