@@ -9,6 +9,7 @@ import {
 import { Button, Card } from "@heroui/react";
 import { headers } from "next/headers";
 import { DeleteAlertModal } from "./DeleteAlertModal";
+import { UpdateAppointmentModal } from "./UpdateAppointmentModal";
 
 const MyAppointments = async () => {
   const token = await auth.api.getToken({
@@ -77,10 +78,10 @@ const MyAppointments = async () => {
             </Card.Content>
 
             <Card.Footer className="gap-2 justify-center sm:justify-end">
-              <Button variant="secondary">
-                <Pencil className="size-4" />
-                Update
-              </Button>
+              <UpdateAppointmentModal
+                appointment={appointment}
+                doctor={appointment.doctor}
+              />
 
               <DeleteAlertModal appointmentId={appointment._id} />
             </Card.Footer>

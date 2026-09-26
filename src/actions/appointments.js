@@ -51,3 +51,30 @@ export const deleteAppointment = async (appointmentId) => {
   }
   return res.json();
 };
+
+export const updateAppointment = async (appointmentId, appointmentData) => {
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  if (!tokenData?.token) {
+    throw new Error("Unauthorized");
+  }
+
+  const res = await fetch(
+    `${process.env.API_URL}/appointments/${appointmentId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenData.token}`,
+      },
+      body: JSON.stringify(appointmentData),
+    },
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to Update appointment");
+  }
+  return res.json();
+};
