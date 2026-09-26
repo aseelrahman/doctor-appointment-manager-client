@@ -26,3 +26,28 @@ export const createAppointment = async (appointmentData) => {
   }
   return res.json();
 };
+
+export const deleteAppointment = async (appointmentId) => {
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  if (!tokenData?.token) {
+    throw new Error("Unauthorized");
+  }
+
+  const res = await fetch(
+    `${process.env.API_URL}/appointments/${appointmentId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${tokenData.token}`,
+      },
+    },
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to delete appointment");
+  }
+  return res.json();
+};
