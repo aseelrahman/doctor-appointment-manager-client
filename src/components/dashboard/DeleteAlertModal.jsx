@@ -1,6 +1,7 @@
 "use client";
 
 import { deleteAppointment } from "@/actions/appointments";
+import { TrashBin } from "@gravity-ui/icons";
 import { AlertDialog, Button, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -22,6 +23,7 @@ export function DeleteAlertModal({ appointmentId }) {
   return (
     <AlertDialog isOpen={isOpen} onOpenChange={setIsOpen}>
       <Button variant="danger" onPress={() => setIsOpen(true)}>
+        <TrashBin />
         Delete
       </Button>
       <AlertDialog.Backdrop>
