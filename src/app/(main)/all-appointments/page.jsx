@@ -2,6 +2,12 @@ import DoctorCard from "@/components/DoctorCard";
 import { fetchDoctors } from "@/lib/doctors";
 import { SearchField } from "@heroui/react";
 
+export const metadata = {
+  title: "All Appointments",
+  description:
+    "Browse doctors, explore their specialties, and find the right doctor for your healthcare needs.",
+};
+
 const AllAppointments = async () => {
   const doctors = await fetchDoctors();
   return (

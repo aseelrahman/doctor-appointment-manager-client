@@ -5,6 +5,20 @@ import { fetchDoctorById } from "@/lib/doctors";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { AppointmentBookModal } from "@/components/AppointmentBookModal";
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const doctor = await fetchDoctorById(id, tokenData.token);
+
+  return {
+    title: doctor.name,
+    description: `Book an appointment with ${doctor.name}, ${doctor.specialty} at ${doctor.hospital}.`,
+  };
+}
 
 const DoctorDetailPage = async ({ params }) => {
   const { id } = await params;

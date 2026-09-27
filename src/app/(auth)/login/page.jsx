@@ -15,8 +15,13 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
 import { FcGoogle } from "react-icons/fc";
+
+export const metadata = {
+  title: "Login",
+  description:
+    "Log in to your DocTime account to manage appointments and your profile.",
+};
 
 const LoginPage = () => {
   const router = useRouter();

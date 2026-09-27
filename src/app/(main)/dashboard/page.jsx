@@ -1,6 +1,11 @@
 import MyAppointments from "@/components/dashboard/MyAppointments";
 import MyProfile from "@/components/dashboard/MyProfile";
 import { Tabs } from "@heroui/react";
+export const metadata = {
+  title: "Dashboard",
+  description:
+    "Manage your appointments and profile from your DocTime dashboard.",
+};
 
 const Dashboard = async () => {
   return (

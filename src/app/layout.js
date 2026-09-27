@@ -13,7 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "DocTime | Book Appointments with Trusted Doctors",
+  title: {
+    default: "DocTime | Book Appointments with Trusted Doctors",
+    template: "%s | DocTime",
+  },
   description:
     "DocTime lets patients browse verified doctors, check availability, and book appointments online in minutes.",
 };
