@@ -1,8 +1,13 @@
 //All Doctors
-export const fetchDoctors = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/doctors`);
+export const fetchDoctors = async (search) => {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}/doctors`;
+  if (search) {
+    url = `${process.env.NEXT_PUBLIC_API_URL}/doctors?search=${encodeURIComponent(search)}`;
+  }
+
+  const res = await fetch(url);
   if (!res.ok) {
-    throw new Error("Failed to fetch top doctors");
+    throw new Error("Failed to fetch doctors");
   }
   const data = await res.json();
   return data;
